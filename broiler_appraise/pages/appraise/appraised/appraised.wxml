@@ -1,0 +1,63 @@
+
+<!--appraising.wxml-->
+<view class="index">
+  <view class="weui-cells__title">请选择查询范围</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">从</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="date" value="{{dateStart}}" fields="day" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+          <view class="weui-input">{{dateStart}}</view>
+        </picker>
+      </view>
+      <view class="weui-cell__hd">
+        <view class="weui-label">至</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="date" value="{{dateEnd}}" fields='day' start="2015-09-01" end="2017-09-01" bindchange="bindDateChange1">
+          <view class="weui-input">{{dateEnd}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view class="index-bd">
+    <block wx:if="{{listLength == 1}}">
+      <view class="kind-head-block">
+        <view class="kind-head">
+          <view class="kind-head-child best">
+            <view class="imageAppraise best"></view>优</view>
+          <view class="kind-head-child good">
+            <view class="imageAppraise good"></view>良</view>
+          <view class="kind-head-child mid">
+            <view class="imageAppraise mid"></view>中</view>
+          <view class="kind-head-child bad">
+            <view class="imageAppraise bad"></view>差</view>
+        </view>
+      </view>
+    </block>
+    <view class="kind-list">
+      <block wx:for-items="{{list}}" wx:key="{{item.org}}">
+        <view class="kind-list-item">
+          <view class="itemMargin">
+            <view id="{{item.org}}" class="item-title"><span class="item-title-span">{{item.org}}</span> <span class="item-title-span">{{item.sqty+"(头)"}}</span> </view>
+            <block wx:for="{{item.detail}}" wx:for-index="detail_i" wx:for-item="detail_item">
+              <view class="item-body">
+                <view class="item-body-shape">
+                  <view class="item-body-text">{{detail_item.itemName}}</view>
+                  <view class="item-body-fparent">
+                    <view class="item-body-child best" style="width:{{detail_item.detail.best}}%">{{detail_item.detail.bestround}}%</view>
+                    <view class="item-body-child good" style="width:{{detail_item.detail.good}}%"></view>
+                    <view class="item-body-child mid" style="width:{{detail_item.detail.mid}}%"></view>
+                    <view class="item-body-child bad" style="width:{{detail_item.detail.bad}}%"></view>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

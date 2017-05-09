@@ -1,0 +1,30 @@
+<!--pages/main/main.wxml-->
+<import src="../common/head.wxml" />
+<import src="../common/foot.wxml" />
+<import src="cell.wxml" />
+
+<view class="container">
+    <!--template is="head" data="{{title: ''}}"/-->
+    <view  bindtap="bindViewTap" class="userinfo">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <text class="userinfo-nickname">
+            {{userInfo.nickName}}
+        </text>
+    </view>
+    
+    <view class="pages-container"> 
+        <scroll-view scroll-y="true" class="pages-wrapper"> 
+            <view wx:for="{{pageItems}}" wx:key="{{text}}"> 
+                <view class="pages-row"> 
+                    <template is="cell" data="{{...item[0],cellHeight}}" /> 
+                    <template is="cell" data="{{...item[1],cellHeight}}" /> 
+                    <template is="cell" data="{{...item[2],cellHeight}}" /> 
+                </view> 
+            </view> 
+        </scroll-view> 
+    </view>
+
+  <!--template is="foot" /-->
+</view>
+
+

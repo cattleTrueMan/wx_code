@@ -1,0 +1,118 @@
+
+<!--index.wxml-->
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+<view class="container">
+  <template is="head" data="{{title: selectBill.date + ' ' + selectBill.org}}" />
+  <form class="page-body" bindsubmit="formSubmit">
+    <view class="page-section">
+      <view class="weui-cells__title">
+        <view class="weui-cell position"><span class="span-title left">{{selectBill.date}}</span>  <span class="span-title mid">{{selectBill.carId}}</span>  <span class="span-title right">{{selectBill.org}}</span>  </view>
+        <view class="weui-cell position">
+          <view class="span-title leftBottom">
+            <block wx:if="{{selectBill.fqtyt!='0'}}"><span class="bottomLeft">三元杂</span>  <span>{{selectBill.fqtyt+"(头)"}}</span>  </block>
+          </view>
+          <view class="span-title rightBottom">
+            <block wx:if="{{selectBill.fqtyf!='0'}}"><span class="bottomLeft">四元杂</span>  <span>{{selectBill.fqtyf+"(头)"}}</span>  </block>
+          </view>
+        </view>
+      </view>
+      <view class="btn-area" id="buttonContainer">
+
+        <!--第一层项目,如:肉猪质量-->
+        <view class="weui-cells" wx:for="{{items_data}}" wx:for-index="level_1_i" wx:for-item="level_1_item">
+          <span class="weui-uploader__title">
+            {{level_1_item.name}}
+        </span> 
+          <radio-group wx:if="{{level_1_item.isScore == '1'}}" class="radio_group" name="{{level_1_item.fnumber}}">
+            <view class="radio-parent">
+              <view class="radio_label">
+                <label class="radio" wx:for="{{items_radio}}" wx:for-index="level_2_r_i" wx:for-item="level_2_r_item">
+                  <radio value="{{level_2_r_item}}" checked="{{level_1_item.value==level_2_r_item}}" />{{level_2_r_item}}
+                </label>
+              </view>
+            </view>
+
+            <!--第二层项目,如:体型-->
+            <view class="level_2_block">
+              <view class="level_2" wx:for="{{level_1_item.items_data}}" wx:for-index="level_2_i" wx:for-item="level_2_item">
+                <block wx:if="{{level_2_item.isParent==false}}">
+                  <span class="Level_2_name">{{level_2_item.name}}</span> 
+                </block>
+                <block wx:if="{{level_2_item.isScore=='3'}}">
+                  <view class="weui-cells isScore3">
+                  <view class="image-title">
+                    <span class="Level_2_name isScore3">{{level_2_item.name}}</span> 
+                    <view class="weui-uploader__hd">
+                      <block wx:if="{{level_1_item.fnumber=='RZKH01'}}">
+                        <view class="weui-uploader__info">{{imageShape.length}}/{{level_2_item.num}}</view>
+                      </block>
+                      <block wx:if="{{level_1_item.fnumber=='RZKH02'}}">
+                        <view class="weui-uploader__info">{{imageAvg.length}}/{{level_2_item.num}}</view>
+                      </block>
+                      <block wx:if="{{level_1_item.fnumber=='RZKH03'}}">
+                        <view class="weui-uploader__info">{{imageRate.length}}/{{level_2_item.num}}</view>
+                      </block>
+                      <block wx:if="{{level_1_item.fnumber=='RZKH04'}}">
+                        <view class="weui-uploader__info">{{imageLoss.length}}/{{level_2_item.num}}</view>
+                      </block>
+                    </view>
+                    </view>
+                    <view class="weui-cell">
+                      <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                          <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files">
+                              <block wx:if="{{level_1_item.fnumber=='RZKH01'}}">
+                                <block wx:for="{{imageShape}}" wx:for-item="image">
+                                  <view class="weui-uploader__file">
+                                    <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" data-name="{{level_1_item.fnumber}}" data-num="{{level_2_item.num}}" bindtouchstart="myTouchStart" bindtouchend="myTouchEnd" bindtap="previewImage" bindlongtap="longTap"></image>
+                                  </view>
+                                </block>
+                              </block>
+                              <block wx:if="{{level_1_item.fnumber=='RZKH02'}}">
+                                <block wx:for="{{imageAvg}}" wx:for-item="image">
+                                  <view class="weui-uploader__file">
+                                    <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" data-name="{{level_1_item.fnumber}}" data-num="{{level_2_item.num}}" bindtouchstart="myTouchStart" bindtouchend="myTouchEnd" bindtap="previewImage" bindlongtap="longTap"></image>
+                                  </view>
+                                </block>
+                              </block>
+                              <block wx:if="{{level_1_item.fnumber=='RZKH03'}}">
+                                <block wx:for="{{imageRate}}" wx:for-item="image">
+                                  <view class="weui-uploader__file">
+                                    <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" data-name="{{level_1_item.fnumber}}" data-num="{{level_2_item.num}}" bindtouchstart="myTouchStart" bindtouchend="myTouchEnd" bindtap="previewImage" bindlongtap="longTap"></image>
+                                  </view>
+                                </block>
+                              </block>
+                              <block wx:if="{{level_1_item.fnumber=='RZKH04'}}">
+                                <block wx:for="{{imageLoss}}" wx:for-item="image">
+                                  <view class="weui-uploader__file">
+                                    <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" data-name="{{level_1_item.fnumber}}" data-num="{{level_2_item.num}}" bindtouchstart="myTouchStart" bindtouchend="myTouchEnd" bindtap="previewImage" bindlongtap="longTap"></image>
+                                  </view>
+                                </block>
+                              </block>
+                            </view>
+                            <view class="weui-uploader__input-box">
+                              <view class="weui-uploader__input" bindtap="chooseImage" data-name="{{level_1_item.fnumber}}" data-num="{{level_2_item.num}}"></view>
+                            </view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </radio-group>
+          <radio-group wx:if="{{level_1_item.isScore == '2'}}" class="radio_group" name="{{level_1_item.fnumber}}">
+            <view class="textarea-wrp">
+              <textarea bindinput="bindinputEvent" style="height: 3em" maxlength="500" value="{{textAreaText}}" />
+            </view>
+          </radio-group>
+        </view>
+        <button type="primary" formType="submit">提交</button>
+      </view>
+    </view>
+  </form>
+  <template is="foot" />
+</view>

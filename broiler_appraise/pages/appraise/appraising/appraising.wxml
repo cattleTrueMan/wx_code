@@ -1,0 +1,40 @@
+
+<!--appraising.wxml-->
+<view class="index">
+  <view class="index-bd">
+    <view class="kind-list">
+      <block wx:for-items="{{list}}" wx:key="{{item.date}}">
+        <view class="kind-list-item">
+          <view id="{{item.date}}" class="kind-list-item-hd {{item.open ? 'kind-list-item-hd-show' : ''}}">
+            <view class="weui-cells__title">{{item.date}}</view>
+          </view>
+          <view class="kind-list-item-bd {{item.open ? 'kind-list-item-bd-show' : 'kind-list-item-bd-show'}}">
+            <view class="navigator-box {{item.open ? 'navigator-box-show' : 'navigator-box-show'}}">
+              <block wx:for-items="{{item.detail}}" wx:for-item="detail" wx:key="*this">
+                <view class="navigator" bindtap="bindViewTap" id="org={{detail.org}}&date={{item.date}}&carId={{detail.carId}}&qty={{detail.qty}}&fqtyt={{detail.fqtyt}}&fqtyf={{detail.fqtyf}}">
+                  <view class="navigator-code">{{detail.carId}}</view>
+                  <view class="navigator-text">{{detail.org}}</view>
+                  <view class="navigator-number">{{detail.qty+'('+detail.unit+')'}}</view>
+                  <view class="navigator-arrow"></view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!--
+  <navigator url="../appraising/appraising" class="pages-item " > 
+    <view class="toobardefault">
+      <text class="pages-text">待评价</text> 
+   </view>
+  </navigator>
+  <navigator url="../appraised/appraised" class="pages-item" > 
+    <view class="toobar">
+      <text class="pages-text">已评价</text> 
+   </view>
+  </navigator>
+  -->
+</view>

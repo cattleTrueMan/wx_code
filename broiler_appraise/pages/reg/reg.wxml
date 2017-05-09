@@ -1,0 +1,29 @@
+<!--pages/reg/reg.wxml-->
+<import src="../common/head.wxml" />
+<import src="../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '在使用温氏客户服务小程序前，需要先进行身份认证。联系温氏股份各分公司销售人员并提交手机号码登记后，即可使用本小程序。'}}"/>
+
+  <view class="page-body">    
+    <form class="page-section" bindsubmit="formPhoneSubmit">
+      <view class="form-cells form-cells_after-title">
+        <view class="form-cell form-cell_input">
+          <input class="form-input" name="Phone" type="number" placeholder="请输入手机号码" />
+        </view>
+        <button type="primary" formType="submit" disabled = "{{disabled}}">{{btnText}}</button>
+      </view>
+    </form>   
+    <form class="page-section" bindsubmit="formCodeSubmit">
+      <view class="form-cells form-cells_after-title">
+        <view class="form-cell form-cell_input">
+          <input class="form-input" name="Code" type="number" placeholder="请输入短信验证码" />
+        </view>
+        <button type="primary" formType="submit" >验证</button>
+      </view>
+    </form>
+  </view>    
+
+  <!--template is="foot" /-->
+</view>
+

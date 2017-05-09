@@ -1,0 +1,29 @@
+{
+    "pages":[    
+    "pages/appraise/appraising/appraising",
+    "pages/reg/reg",
+    "pages/appraise/appraised/appraised",
+    "pages/appraise/appedit/appedit"
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "温氏客户服务",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": "true"
+  },
+  "tabBar": {    
+    "list": [{
+      "pagePath": "pages/appraise/appraising/appraising",
+      "iconPath":"pages/image/icon1-1.png",
+      "selectedIconPath":"pages/image/icon1.png",
+      "text": "待评价"
+    }, {
+      "pagePath": "pages/appraise/appraised/appraised",
+      "iconPath":"pages/image/icon2-2.png",
+      "selectedIconPath":"pages/image/icon2.png",
+      "text": "已评价"
+    }]
+  }
+}
